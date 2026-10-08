@@ -2,275 +2,619 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>StrokeHealth — AI-Powered Stroke Risk Prediction</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>StrokeHealth | AI-Powered Stroke Risk Research</title>
 
     <meta name="description"
-          content="StrokeHealth is an AI-powered stroke risk prediction research project for healthcare research and education.">
+          content="StrokeHealth is an AI-powered stroke risk prediction research project exploring machine learning applications in healthcare.">
+
+    <meta name="keywords"
+          content="StrokeHealth, AI, healthcare, stroke prediction, machine learning, biomedical engineering">
+
+    <meta name="author"
+          content="StrokeHealth">
 
     <style>
+
+        /* =========================
+           GLOBAL
+        ========================= */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif;
+
             background: #07111f;
-            color: #f5f7fa;
+            color: #f4f7fb;
             line-height: 1.6;
         }
 
         a {
-            text-decoration: none;
             color: inherit;
+            text-decoration: none;
         }
 
         .container {
-            width: min(1100px, 90%);
+            width: min(1120px, 90%);
             margin: auto;
         }
 
-        /* NAVBAR */
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
         nav {
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
-            background: rgba(7, 17, 31, 0.92);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid #1e3048;
+            left: 0;
+            width: 100%;
+
+            z-index: 1000;
+
+            background: rgba(7, 17, 31, 0.82);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.07);
         }
 
         .nav-inner {
-            height: 70px;
+            height: 72px;
+
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
         }
 
         .logo {
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             font-weight: 700;
-            color: #ffffff;
+            letter-spacing: -0.5px;
         }
 
-        .logo span {
-            color: #42d9c8;
+        .logo-mark {
+            color: #4de1cf;
         }
 
         .nav-links {
             display: flex;
-            gap: 28px;
-            font-size: 0.95rem;
-            color: #b9c7d8;
+            gap: 30px;
+
+            color: #aebed0;
+
+            font-size: 0.92rem;
+        }
+
+        .nav-links a {
+            transition: 0.2s;
         }
 
         .nav-links a:hover {
-            color: #42d9c8;
+            color: #4de1cf;
         }
 
-        /* HERO */
+
+        /* =========================
+           HERO
+        ========================= */
+
         .hero {
-            min-height: 720px;
+            min-height: 100vh;
+
             display: flex;
             align-items: center;
+
+            position: relative;
+            overflow: hidden;
+
             background:
-                radial-gradient(circle at 80% 20%, #123d4a 0, transparent 35%),
-                radial-gradient(circle at 10% 70%, #102d52 0, transparent 35%);
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(46, 185, 181, 0.16),
+                    transparent 35%
+                ),
+
+                radial-gradient(
+                    circle at 10% 80%,
+                    rgba(56, 111, 200, 0.18),
+                    transparent 35%
+                );
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 600px;
+            height: 600px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(77,225,207,0.08);
+
+            right: -200px;
+            top: 100px;
         }
 
         .hero-content {
-            max-width: 780px;
+            max-width: 850px;
+
+            position: relative;
+            z-index: 2;
         }
 
         .badge {
-            display: inline-block;
-            padding: 7px 14px;
-            border: 1px solid #28536a;
-            border-radius: 30px;
-            color: #42d9c8;
+            display: inline-flex;
+
+            padding: 8px 15px;
+
+            border-radius: 999px;
+
+            border: 1px solid rgba(77,225,207,0.25);
+
+            background: rgba(77,225,207,0.06);
+
+            color: #4de1cf;
+
             font-size: 0.85rem;
+
             margin-bottom: 25px;
-            background: rgba(66, 217, 200, 0.05);
         }
 
         h1 {
-            font-size: clamp(3rem, 7vw, 5.8rem);
-            line-height: 1.02;
-            letter-spacing: -3px;
-            margin-bottom: 25px;
+            font-size: clamp(3.3rem, 8vw, 6.8rem);
+
+            line-height: 0.98;
+
+            letter-spacing: -5px;
+
+            margin-bottom: 30px;
         }
 
         .gradient {
-            background: linear-gradient(90deg, #42d9c8, #63a8ff);
+            background:
+                linear-gradient(
+                    90deg,
+                    #4de1cf,
+                    #62a5ff
+                );
+
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
-            max-width: 680px;
-            color: #aebdce;
+        .hero-description {
+            max-width: 720px;
+
+            color: #a9b8ca;
+
             font-size: 1.15rem;
-            margin-bottom: 35px;
+
+            line-height: 1.8;
+
+            margin-bottom: 38px;
         }
 
         .buttons {
             display: flex;
+
             gap: 15px;
+
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 13px 22px;
-            border-radius: 8px;
+            padding: 13px 23px;
+
+            border-radius: 9px;
+
             font-weight: 600;
-            transition: 0.2s;
+
+            transition:
+                transform 0.2s,
+                border-color 0.2s,
+                background 0.2s;
         }
 
-        .btn-primary {
-            background: #42d9c8;
-            color: #06121f;
-        }
-
-        .btn-primary:hover {
+        .btn:hover {
             transform: translateY(-2px);
         }
 
+        .btn-primary {
+            background: #4de1cf;
+
+            color: #06121e;
+        }
+
+        .btn-primary:hover {
+            background: #63eadb;
+        }
+
         .btn-secondary {
-            border: 1px solid #38506b;
-            color: #d8e2ee;
+            border: 1px solid #31475f;
+
+            color: #d9e4ef;
         }
 
         .btn-secondary:hover {
-            border-color: #42d9c8;
-            color: #42d9c8;
+            border-color: #4de1cf;
+
+            color: #4de1cf;
         }
 
-        /* SECTIONS */
+
+        /* =========================
+           GENERAL SECTIONS
+        ========================= */
+
         section {
-            padding: 100px 0;
+            padding: 110px 0;
+        }
+
+        .section-label {
+            color: #4de1cf;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            font-size: 0.75rem;
+
+            font-weight: 700;
+
+            margin-bottom: 12px;
         }
 
         .section-title {
-            font-size: 2.3rem;
-            margin-bottom: 15px;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+
+            letter-spacing: -1.5px;
+
+            margin-bottom: 18px;
         }
 
         .section-description {
-            color: #9eafc2;
             max-width: 700px;
-            margin-bottom: 45px;
+
+            color: #96a9bd;
+
+            font-size: 1rem;
+
+            margin-bottom: 50px;
         }
 
-        /* CARDS */
-        .grid {
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            background: #091624;
+        }
+
+        .cards {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 22px;
         }
 
         .card {
-            background: #0c1a2b;
-            border: 1px solid #1c3047;
-            padding: 30px;
-            border-radius: 14px;
+            padding: 32px;
+
+            border-radius: 16px;
+
+            background: #0c1b2c;
+
+            border: 1px solid #1b3047;
+
+            transition:
+                transform 0.2s,
+                border-color 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+
+            border-color: #31516d;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: rgba(77,225,207,0.08);
+
+            font-size: 1.4rem;
+
+            margin-bottom: 22px;
         }
 
         .card h3 {
+            font-size: 1.15rem;
+
             margin-bottom: 12px;
-            color: #ffffff;
         }
 
         .card p {
-            color: #9eafc2;
-            font-size: 0.95rem;
+            color: #94a8bc;
+
+            font-size: 0.94rem;
+
+            line-height: 1.7;
         }
 
-        .icon {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
 
-        /* WORKFLOW */
+        /* =========================
+           WORKFLOW
+        ========================= */
+
         .workflow {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
             gap: 12px;
         }
 
-        .step {
-            background: #0c1a2b;
-            border: 1px solid #1c3047;
-            padding: 22px 15px;
-            border-radius: 10px;
+        .workflow-step {
+            padding: 25px 16px;
+
+            border-radius: 12px;
+
+            background: #0b1929;
+
+            border: 1px solid #1b3047;
+
             text-align: center;
         }
 
         .step-number {
-            color: #42d9c8;
-            font-weight: bold;
-            margin-bottom: 10px;
+            color: #4de1cf;
+
+            font-weight: 700;
+
+            font-size: 0.8rem;
+
+            margin-bottom: 12px;
         }
 
-        .step p {
-            color: #b3c1d1;
-            font-size: 0.9rem;
+        .workflow-step h3 {
+            font-size: 0.95rem;
+
+            margin-bottom: 7px;
         }
 
-        /* RESEARCH */
+        .workflow-step p {
+            color: #8297ac;
+
+            font-size: 0.8rem;
+        }
+
+
+        /* =========================
+           RESEARCH
+        ========================= */
+
         .research {
-            background: #091725;
+            background: #081421;
+        }
+
+        .research-layout {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 60px;
+
+            align-items: center;
+        }
+
+        .research-text p {
+            color: #9bafc3;
+
+            margin-bottom: 20px;
         }
 
         .research-box {
-            max-width: 850px;
-            padding: 40px;
-            background: #0c1a2b;
-            border: 1px solid #1c3047;
+            padding: 35px;
+
             border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #0d2032,
+                    #091522
+                );
+
+            border: 1px solid #1d354d;
         }
 
-        .research-box p {
-            color: #aebdce;
-            margin-bottom: 15px;
+        .research-box h3 {
+            margin-bottom: 20px;
         }
 
-        /* DISCLAIMER */
+        .research-list {
+            list-style: none;
+        }
+
+        .research-list li {
+            padding: 12px 0;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.06);
+
+            color: #a6b8ca;
+        }
+
+        .research-list li:last-child {
+            border-bottom: none;
+        }
+
+        .research-list span {
+            color: #4de1cf;
+
+            margin-right: 8px;
+        }
+
+
+        /* =========================
+           DEMO CTA
+        ========================= */
+
+        .demo {
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(77,225,207,0.09),
+                    transparent 50%
+                );
+        }
+
+        .demo-content {
+            max-width: 760px;
+
+            margin: auto;
+        }
+
+        .demo-content p {
+            color: #98aabd;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================
+           DISCLAIMER
+        ========================= */
+
         .disclaimer {
-            background: #101b29;
-            border-left: 4px solid #42d9c8;
-            padding: 25px;
-            border-radius: 8px;
-            color: #aebdce;
+            padding: 80px 0;
         }
 
-        .disclaimer strong {
+        .disclaimer-box {
+            padding: 25px 30px;
+
+            border-left:
+                3px solid #4de1cf;
+
+            background: #0b1725;
+
+            border-radius: 8px;
+
+            color: #91a5b9;
+
+            font-size: 0.88rem;
+        }
+
+        .disclaimer-box strong {
             color: #ffffff;
         }
 
-        /* FOOTER */
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact {
+            background: #091624;
+        }
+
+        .contact-content {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 30px;
+        }
+
+        .contact-text p {
+            color: #96a9bd;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
         footer {
-            border-top: 1px solid #1e3048;
             padding: 35px 0;
-            color: #788ba0;
-            font-size: 0.9rem;
+
+            border-top:
+                1px solid rgba(255,255,255,0.07);
+
+            color: #71869b;
+
+            font-size: 0.85rem;
         }
 
         .footer-inner {
             display: flex;
+
             justify-content: space-between;
+
+            align-items: center;
+
             gap: 20px;
+
             flex-wrap: wrap;
         }
 
-        @media (max-width: 800px) {
+        .footer-brand {
+            color: #d5e0eb;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 850px) {
+
             .nav-links {
                 display: none;
             }
 
-            .grid {
+            .cards {
                 grid-template-columns: 1fr;
             }
 
@@ -278,272 +622,643 @@
                 grid-template-columns: 1fr;
             }
 
+            .research-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
             h1 {
-                letter-spacing: -1.5px;
+                letter-spacing: -3px;
             }
         }
+
     </style>
 </head>
 
+
 <body>
 
-<!-- NAVIGATION -->
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
 <nav>
+
     <div class="container nav-inner">
-        <div class="logo">
-            Stroke<span>Health</span>
-        </div>
+
+        <a href="#" class="logo">
+            Stroke<span class="logo-mark">Health</span>
+        </a>
 
         <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#technology">Technology</a>
-            <a href="#research">Research</a>
-            <a href="#contact">Contact</a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#technology">
+                Technology
+            </a>
+
+            <a href="#research">
+                Research
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
         </div>
+
     </div>
+
 </nav>
 
 
-<!-- HERO -->
+
+<!-- =========================
+     HERO
+========================= -->
+
 <header class="hero">
+
     <div class="container">
+
         <div class="hero-content">
 
             <div class="badge">
-                AI × Healthcare Research
+                AI × Biomedical Engineering
             </div>
 
+
             <h1>
-                Understanding<br>
-                <span class="gradient">Stroke Risk</span>
+
+                Understanding
+                <br>
+
+                <span class="gradient">
+                    Stroke Risk
+                </span>
+
                 with AI.
+
             </h1>
 
-            <p>
+
+            <p class="hero-description">
+
                 StrokeHealth is an AI-powered research project exploring
-                machine learning approaches for estimating stroke risk
-                from selected demographic and health-related factors.
+                machine learning approaches for stroke risk prediction
+                using healthcare-related data.
+
             </p>
+
 
             <div class="buttons">
 
-                <!-- IMPORTANT: Replace this URL with your actual Streamlit URL -->
+
+                <!-- YOUR REAL STREAMLIT APP -->
+
                 <a
                     class="btn btn-primary"
-                    href="https://stroke-prediction-trantuongvi.streamlit.app"
-                    target="_blank">
-                    Try Demo →
+                    href="https://stroke-prediction-app-dttttv.streamlit.app/"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    Try the AI Demo →
+
                 </a>
+
+
+                <!-- YOUR REAL GITHUB REPOSITORY -->
 
                 <a
                     class="btn btn-secondary"
                     href="https://github.com/TranTuongVi/stroke-prediction-app"
-                    target="_blank">
-                    View on GitHub
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    View GitHub
+
                 </a>
 
             </div>
 
         </div>
+
     </div>
+
 </header>
 
 
-<!-- ABOUT -->
-<section id="about">
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section
+    id="about"
+    class="about">
+
     <div class="container">
 
+
+        <div class="section-label">
+            About the Project
+        </div>
+
+
         <h2 class="section-title">
-            About StrokeHealth
+            AI for Healthcare Research
         </h2>
 
+
         <p class="section-description">
-            StrokeHealth demonstrates how machine learning can be applied
-            to healthcare-related data to explore patterns associated with
-            stroke risk.
+
+            StrokeHealth explores how machine learning can be used
+            to process health-related information and provide
+            interpretable predictions for research and educational purposes.
+
         </p>
 
-        <div class="grid">
+
+        <div class="cards">
+
 
             <div class="card">
-                <div class="icon">🧠</div>
-                <h3>AI Prediction</h3>
+
+                <div class="card-icon">
+                    🧠
+                </div>
+
+                <h3>
+                    Machine Learning
+                </h3>
+
                 <p>
-                    A trained machine-learning pipeline processes selected
+
+                    A machine-learning pipeline processes selected
                     demographic and health-related features to estimate
                     stroke-risk probability.
+
                 </p>
+
             </div>
 
-            <div class="card">
-                <div class="icon">📊</div>
-                <h3>Risk Visualization</h3>
-                <p>
-                    Prediction results are presented through an interactive
-                    interface designed to make model output easier to understand.
-                </p>
-            </div>
 
             <div class="card">
-                <div class="icon">🔬</div>
-                <h3>Research & Education</h3>
+
+                <div class="card-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Interactive Prediction
+                </h3>
+
                 <p>
-                    The project is intended as an educational and research
-                    prototype for exploring AI applications in healthcare.
+
+                    Users can interact with the deployed application
+                    and explore how different input characteristics
+                    influence the model's prediction.
+
                 </p>
+
             </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🔬
+                </div>
+
+                <h3>
+                    Research & Education
+                </h3>
+
+                <p>
+
+                    The project is designed as an educational and
+                    research prototype for exploring AI applications
+                    in healthcare.
+
+                </p>
+
+            </div>
+
 
         </div>
 
     </div>
+
 </section>
 
 
-<!-- TECHNOLOGY -->
-<section id="technology">
+
+<!-- =========================
+     TECHNOLOGY
+========================= -->
+
+<section
+    id="technology">
+
     <div class="container">
 
+
+        <div class="section-label">
+            Technology
+        </div>
+
+
         <h2 class="section-title">
-            How It Works
+            From Data to Prediction
         </h2>
 
+
         <p class="section-description">
-            The system follows a simple machine-learning workflow from
-            user input to risk estimation.
+
+            StrokeHealth follows a machine-learning workflow that
+            transforms user-provided features into a model-generated
+            risk estimate.
+
         </p>
+
 
         <div class="workflow">
 
-            <div class="step">
-                <div class="step-number">01</div>
-                <p>User Input</p>
+
+            <div class="workflow-step">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <h3>
+                    Input
+                </h3>
+
+                <p>
+                    Health-related features
+                </p>
+
             </div>
 
-            <div class="step">
-                <div class="step-number">02</div>
-                <p>Data Processing</p>
+
+            <div class="workflow-step">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <h3>
+                    Processing
+                </h3>
+
+                <p>
+                    Data preparation
+                </p>
+
             </div>
 
-            <div class="step">
-                <div class="step-number">03</div>
-                <p>ML Pipeline</p>
+
+            <div class="workflow-step">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <h3>
+                    ML Model
+                </h3>
+
+                <p>
+                    Machine-learning inference
+                </p>
+
             </div>
 
-            <div class="step">
-                <div class="step-number">04</div>
-                <p>Risk Probability</p>
+
+            <div class="workflow-step">
+
+                <div class="step-number">
+                    04
+                </div>
+
+                <h3>
+                    Prediction
+                </h3>
+
+                <p>
+                    Risk estimation
+                </p>
+
             </div>
 
-            <div class="step">
-                <div class="step-number">05</div>
-                <p>Visualization</p>
+
+            <div class="workflow-step">
+
+                <div class="step-number">
+                    05
+                </div>
+
+                <h3>
+                    Visualization
+                </h3>
+
+                <p>
+                    Interactive results
+                </p>
+
             </div>
+
 
         </div>
 
     </div>
+
 </section>
 
 
-<!-- RESEARCH -->
-<section id="research" class="research">
+
+<!-- =========================
+     RESEARCH
+========================= -->
+
+<section
+    id="research"
+    class="research">
+
     <div class="container">
 
-        <h2 class="section-title">
-            Research Direction
-        </h2>
 
-        <p class="section-description">
-            StrokeHealth is positioned as an ongoing research and
-            experimentation project rather than a clinical diagnostic system.
-        </p>
+        <div class="section-label">
+            Research
+        </div>
 
-        <div class="research-box">
+
+        <div class="research-layout">
+
+
+            <div class="research-text">
+
+                <h2 class="section-title">
+                    Building Toward
+                    Better Healthcare AI
+                </h2>
+
+
+                <p>
+
+                    StrokeHealth is part of an ongoing exploration
+                    into the use of artificial intelligence and
+                    biomedical engineering for healthcare applications.
+
+                </p>
+
+
+                <p>
+
+                    The project provides a foundation for studying
+                    model performance, data quality, interpretability,
+                    and generalization in healthcare-related machine learning.
+
+                </p>
+
+            </div>
+
+
+            <div class="research-box">
+
+                <h3>
+                    Research Directions
+                </h3>
+
+
+                <ul class="research-list">
+
+                    <li>
+                        <span>→</span>
+                        Model performance evaluation
+                    </li>
+
+                    <li>
+                        <span>→</span>
+                        Data quality and preprocessing
+                    </li>
+
+                    <li>
+                        <span>→</span>
+                        Model interpretability
+                    </li>
+
+                    <li>
+                        <span>→</span>
+                        Generalization to new populations
+                    </li>
+
+                    <li>
+                        <span>→</span>
+                        Responsible AI in healthcare
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     DEMO
+========================= -->
+
+<section class="demo">
+
+    <div class="container">
+
+        <div class="demo-content">
+
+
+            <div class="section-label">
+                Live Prototype
+            </div>
+
+
+            <h2 class="section-title">
+                Explore StrokeHealth
+            </h2>
+
 
             <p>
-                The project explores the intersection of machine learning,
-                biomedical engineering and healthcare data.
+
+                Try the deployed research prototype and explore
+                the machine-learning prediction interface.
+
             </p>
 
-            <p>
-                Future research directions may include improved model
-                generalization, interpretability, data quality analysis,
-                and evaluation on broader datasets.
-            </p>
-
-        </div>
-
-    </div>
-</section>
-
-
-<!-- DISCLAIMER -->
-<section>
-    <div class="container">
-
-        <div class="disclaimer">
-
-            <strong>Research & Educational Prototype</strong>
-
-            <br><br>
-
-            StrokeHealth is intended for research and educational purposes only.
-            It is not a medical diagnostic device and should not be used to
-            make medical decisions or replace professional medical advice.
-
-        </div>
-
-    </div>
-</section>
-
-
-<!-- CONTACT -->
-<section id="contact">
-    <div class="container">
-
-        <h2 class="section-title">
-            StrokeHealth
-        </h2>
-
-        <p class="section-description">
-            An AI-powered stroke risk prediction research project.
-        </p>
-
-        <div class="buttons">
 
             <a
                 class="btn btn-primary"
-                href="mailto:contact@strokehealth.io.vn">
-                Contact Us
+                href="https://stroke-prediction-app-dttttv.streamlit.app/"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                Launch StrokeHealth Demo →
+
             </a>
 
-            <a
-                class="btn btn-secondary"
-                href="https://github.com/TranTuongVi/stroke-prediction-app"
-                target="_blank">
-                GitHub Repository
-            </a>
 
         </div>
 
     </div>
+
 </section>
 
 
-<!-- FOOTER -->
-<footer>
-    <div class="container footer-inner">
 
-        <div>
-            © 2026 StrokeHealth
-        </div>
+<!-- =========================
+     DISCLAIMER
+========================= -->
 
-        <div>
-            AI × Biomedical Engineering
+<section class="disclaimer">
+
+    <div class="container">
+
+        <div class="disclaimer-box">
+
+            <strong>
+                Research & Educational Prototype
+            </strong>
+
+            <br><br>
+
+            StrokeHealth is intended for research and educational
+            purposes only. The predictions generated by this prototype
+            should not be interpreted as medical diagnosis, medical advice,
+            or a substitute for consultation with qualified healthcare
+            professionals.
+
         </div>
 
     </div>
+
+</section>
+
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section
+    id="contact"
+    class="contact">
+
+    <div class="container">
+
+
+        <div class="contact-content">
+
+
+            <div class="contact-text">
+
+                <div class="section-label">
+                    Contact
+                </div>
+
+
+                <h2 class="section-title">
+                    StrokeHealth
+                </h2>
+
+
+                <p>
+                    AI-powered stroke risk prediction research.
+                </p>
+
+            </div>
+
+
+            <div class="buttons">
+
+
+                <a
+                    class="btn btn-primary"
+                    href="mailto:contact@strokehealth.io.vn">
+
+                    Contact
+
+                </a>
+
+
+                <a
+                    class="btn btn-secondary"
+                    href="https://github.com/TranTuongVi/stroke-prediction-app"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    GitHub
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="container footer-inner">
+
+
+        <div>
+
+            <span class="footer-brand">
+                StrokeHealth
+            </span>
+
+            <br>
+
+            AI × Biomedical Engineering
+
+        </div>
+
+
+        <div>
+
+            © 2026 StrokeHealth
+
+        </div>
+
+
+    </div>
+
 </footer>
+
 
 </body>
 </html>
